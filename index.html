@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio.luau</title>
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <meta property="og:title" content="sdaadsasd | Luau Developer" />
+    <meta property="og:description" content="Roblox systems engineer. Currently open for work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://obeme-qq.github.io" />
+    <meta name="theme-color" content="#94e191">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="comment no-selection">-- portfolio.luau</div>
+            <h1 class="cursor">sdaadsasd</h1>
+            <div class="subtitle">luau dev | roblox systems</div>
+        </header>
+
+        <section class="info">
+            <div class="code-block">
+                <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
+                <div><span class="keyword">local</span> info = {<br>
+                    &nbsp;&nbsp;specialization = <span class="string">"Systems & Backend"</span>,<br>
+                    &nbsp;&nbsp;tools = { <span class="string">"Rojo"</span>, <span class="string">"Git"</span>, <span class="string">"Wally"</span> },<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;experience = <span class="string">"3 years"</span>,<br>
+                    &nbsp;&nbsp;status = <span class="string">"open for work"</span><br>
+                    &nbsp;&nbsp;timezone = <span class="string">"UTC+3"</span><br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;contact = <a href="#contact-title" class="code-link" id="contact-link">"click_to_view"</a><br>
+                }</div>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2 class="no-selection" id="projects-title">-- projects</h2>
+            
+            <!-- <div class="project">
+                <div class="project-header">
+                    <span class="keyword no-selection">function</span> <span class="func-name">ai_drawing_recognition</span>()
+                </div>
+                <span class="project-desc">nub</span>
+                <video class="project-media" src="assets/ai_image_recognition_demo.mp4" autoplay loop muted playsinline></video>
+            </div> -->
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="keyword no-selection">function</span> <span class="func-name">ai_drawing_recognition</span>()
+                </div>
+                <span class="project-desc"><span class="no-selection">-- </span>drawing recognition system, powered by an LSTM model running inside Roblox Studio!</span>
+                <iframe 
+                    class="project-media youtube-embed"
+                    src="https://www.youtube.com/embed/w4yxsrxLZFA?si=liI8BlF0qvRMCE1Z&amp;start=3"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+                
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="no-selection" id="contact-title">-- contact</h2>
+            <div class="comment">-- serious inquiries only</div>
+            <!-- <a href="https://discord.com/users/1419397464687116338" class="link">discord: sdaadsasd_96442</a> -->
+            <button class="link" id="profile-link">discord: sdaadsasd_96442</button>
+        </section>
+    </div>
+    <div id="notification-area"></div>
+
+    <div class="project-media placeholder" id="template" style="display: none;">
+        <span class="comment media-placeholder">-- no media available</span>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const titleElement = document.querySelector("h1.cursor");
+            const text = titleElement.innerText;
+            titleElement.innerText = "";
+            
+            setTimeout(() => {
+                let i = 0;
+                function write() {
+                    if (i < text.length) {
+                        titleElement.innerText += text.charAt(i);
+                        i++;
+                        setTimeout(write, 100);
+                    }
+                }
+                write();
+            }, 250)
+        });
+    </script>
+    <script>
+        const l = document.getElementById('profile-link');
+        const notifs = document.getElementById("notification-area");
+        const clickSound = new Audio("assets/click-from-Jaszunio15.mp3");
+
+        function notify(text) {
+            const soundClone = clickSound.cloneNode();
+            soundClone.volume = 0.5;
+            soundClone.play().catch(e => console.log("Audio blocked:", e));
+
+            const msg = document.createElement("div");
+            msg.classList.add("console-msg");
+            msg.innerHTML = `<span class="keyword" style="color: var(--blue)">print</span>(<span class="string">"${text}"</span>)`;
+            
+            notifs.appendChild(msg);
+            
+            setTimeout(() => msg.remove(), 3100);
+        }
+
+        l.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText("sdaadsasd_96442");
+                console.log("Copy action succeeded!");
+                notify("discord copied to clipboard");
+            } catch (err) {
+                console.error("Copy action failed:", err);
+            }
+        })
+    </script>
+    <script>
+        document.querySelectorAll('video').forEach(video => {
+            const template = document.getElementById("template");
+
+            video.addEventListener('error', () => {
+                let copy = template.cloneNode(true);
+                copy.style.display = '';
+                video.replaceWith(copy);
+            });
+
+            if (!video.getAttribute('src')) {
+                let copy = template.cloneNode(true);
+                copy.style.display = '';
+                video.replaceWith(copy);
+            }
+        });
+    </script>
+</body>
+</html>
