@@ -41,6 +41,83 @@ body {
     line-height: 1.6;
 }
 
+.code-fold {
+    cursor: pointer;
+    padding: 1rem;
+    background: var(--bg2);
+    border: 1px solid var(--bg3);
+    border-left: 2px solid var(--blue);
+    font-size: 0.95rem;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.code-fold:hover {
+    background: var(--bg3);
+}
+
+.code-fold:active {
+    transform: translateY(2px);
+}
+
+.fold-arrow {
+    font-size: 0.8rem;
+    color: var(--gray);
+    transition: transform 0.3s ease;
+}
+
+/* { ... } */
+.fold-placeholder {
+    color: var(--gray);
+    font-style: italic;
+}
+
+.projects-hidden {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out;
+    border-left: 1px dashed var(--bg3);
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+.projects-hidden.expanded {
+    grid-template-rows: 1fr;
+    margin-bottom: 2.5rem;
+}
+
+.projects-wrapper {
+    overflow: hidden;
+}
+
+.code-fold-end {
+    color: var(--text);
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.projects-hidden.expanded .code-fold-end {
+    opacity: 1;
+}
+
+#extra-projects {
+    border-bottom: 1px dashed var(--bg3);
+}
+
+#extra-projects .projects-wrapper .project:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.code-fold.open .fold-arrow {
+    transform: rotate(90deg);
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -263,6 +340,34 @@ button.link:active {
     cursor: pointer;
     color: var(--green);
     position: relative; /* for the underline */
+}
+
+#github-link {
+    all:unset;
+    cursor: pointer;
+    color: var(--green);
+    position: relative; /* for the underline */
+}
+
+#github-link:active {
+    color: var(--text);
+    transform: translateY(1px);
+}
+
+#github-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 50%;
+    background-color: var(--green);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+#github-link:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 #contact-link:active {

@@ -31,28 +31,26 @@
                     &nbsp;&nbsp;status = <span class="string">"open for work"</span>,<br>
                     &nbsp;&nbsp;timezone = <span class="string">"UTC+3"</span>,<br>
                     &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;GitHub = <a href="https://github.com/obeme-qq" class="code-link" id="github-link">"obeme-qq"</a>,<br>
                     &nbsp;&nbsp;contact = <a href="#contact-title" class="code-link" id="contact-link">"click_to_view"</a><br>
                 }</div>
             </div>
         </section>
 
         <section class="projects">
-            <h2 class="no-selection" id="projects-title">-- projects</h2>
-            
-            <!-- <div class="project">
-                <div class="project-header">
-                    <span class="keyword no-selection">function</span> <span class="func-name">ai_drawing_recognition</span>()
-                </div>
-                <span class="project-desc">nub</span>
-                <video class="project-media" src="assets/ai_image_recognition_demo.mp4" autoplay loop muted playsinline></video>
-            </div> -->
+            <h2 class="no-selection" id="projects-title" style="margin-bottom: 0.8rem;">-- projects</h2>
+
+            <div class="no-selection" style="color: var(--green); margin-bottom: 1.5rem;">
+                -- [[ FEATURED ]]
+            </div>
 
             <div class="project">
                 <div class="project-header">
                     <span class="keyword no-selection">function</span> <span class="func-name">ai_drawing_recognition</span>()
                 </div>
                 <span class="project-desc"><span class="no-selection">-- </span>drawing recognition system, powered by an LSTM model running inside Roblox Studio!</span>
-                <iframe 
+                <iframe
+                    loading="lazy" 
                     class="project-media youtube-embed"
                     src="https://www.youtube.com/embed/w4yxsrxLZFA?si=liI8BlF0qvRMCE1Z&amp;start=3"
                     title="YouTube video player"
@@ -61,7 +59,37 @@
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen>
                 </iframe>
-                
+            </div>
+
+            <div id="project-toggle" class="code-fold no-selection">
+                <span class="fold-arrow">▶</span> 
+                <span class="keyword">local</span> archive = <span class="fold-placeholder">{ ... }</span>
+            </div>
+
+            <div id="extra-projects" class="projects-hidden">
+                <div class="projects-wrapper">
+                    
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="keyword no-selection">function</span> <span class="func-name">draw_a_car</span>()
+                        </div>
+                        <span class="project-desc"><span class="no-selection">-- </span>Interprets 2D user-drawn grids to generate functional 3D cars. Automatically calculates the car's properties.</span>
+                        <iframe
+                            loading="lazy"
+                            class="project-media youtube-embed"
+                            src="https://www.youtube.com/embed/nkENbM1CcFU?si=liI8BlF0qvRMCE1Z&amp;start=3"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+
+                </div>
+
+                <div class="code-fold-end">}</div>
             </div>
         </section>
 
@@ -141,6 +169,30 @@
                 copy.style.display = '';
                 video.replaceWith(copy);
             }
+        });
+    </script>
+    <script>
+        const toggleBtn = document.getElementById('project-toggle');
+        const hiddenSection = document.getElementById('extra-projects');
+        const arrow = toggleBtn.querySelector('.fold-arrow');
+        const placeholder = toggleBtn.querySelector('.fold-placeholder');
+
+        toggleBtn.addEventListener('click', () => {
+            const isExpanded = hiddenSection.classList.contains('expanded');
+            
+            if (isExpanded) {
+                hiddenSection.classList.remove('expanded');
+                toggleBtn.classList.remove('open');
+                placeholder.textContent = "{ ... }";
+                // notify("archive collapsed");
+            } else {
+                hiddenSection.classList.add('expanded');
+                toggleBtn.classList.add('open');
+                placeholder.textContent = "{";
+                // notify("loading extra projects...");
+            }
+            clickSound.currentTime = 0
+            clickSound.play()
         });
     </script>
 </body>
